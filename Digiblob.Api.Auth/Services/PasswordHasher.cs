@@ -15,7 +15,7 @@ public sealed class PasswordHasher : IPasswordHasher
         RandomNumberGenerator.Fill(salt);
         
         Span<byte> key = stackalloc byte[32];
-        Rfc2898DeriveBytes.Pbkdf2(passwordBytes, salt, key, 512_000, HashAlgorithmName.SHA512);
+        Rfc2898DeriveBytes.Pbkdf2(passwordBytes, salt, key, 1_572_864, HashAlgorithmName.SHA512);
 
         return $"{Convert.ToBase64String(key)};{Convert.ToBase64String(salt)}";
     }
