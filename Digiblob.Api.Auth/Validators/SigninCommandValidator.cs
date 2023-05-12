@@ -5,7 +5,7 @@ namespace Digiblob.Api.Auth.Validators;
 /// <summary>
 ///     Validator of the user model to create.
 /// </summary>
-public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+public sealed class SigninCommandValidator : AbstractValidator<SigninCommand>
 {
     private readonly ILookupNormalizer _lookupNormalizer;
     private readonly DataContext _dataContext;
@@ -13,7 +13,7 @@ public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCom
     /// <summary>
     ///     Creates a set of rules to validate the user model to create.
     /// </summary>
-    public CreateUserCommandValidator(ILookupNormalizer lookupNormalizer, DataContext dataContext)
+    public SigninCommandValidator(ILookupNormalizer lookupNormalizer, DataContext dataContext)
     {
         _lookupNormalizer = lookupNormalizer;
         _dataContext = dataContext;

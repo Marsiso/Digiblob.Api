@@ -7,7 +7,7 @@ public sealed class ValidatorInstaller : IInstaller
 {
     public void InstallServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddScoped<IValidator<CreateUserCommand>, CreateUserCommandValidator>();
+        services.AddScoped<IValidator<SigninCommand>, SigninCommandValidator>();
         services.AddScoped<IValidator<LoginQuery>, LoginQueryValidator>();
     }
 }

@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace Digiblob.Api.Auth.Models.Post;
 
 [DataContract]
-public sealed class CreateUserRequest
+public sealed class SigninRequest
 {
     [DataMember]
     public string? GivenName { get; set; }

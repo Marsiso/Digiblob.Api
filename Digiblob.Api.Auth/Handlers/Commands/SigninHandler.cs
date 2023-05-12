@@ -3,14 +3,14 @@ using Digiblob.Api.Auth.Services.Interfaces;
 
 namespace Digiblob.Api.Auth.Handlers.Commands;
 
-public sealed class CreateUserHandler : ICommandHandler<CreateUserCommand, Unit>
+public sealed class SigninHandler : ICommandHandler<SigninCommand, Unit>
 {
     private readonly DataContext _dataContext;
     private readonly IPasswordHasher _passwordHasher;
     private readonly ILookupNormalizer _lookupNormalizer;
     private readonly ISecurityStampProvider _securityStampProvider;
 
-    public CreateUserHandler(
+    public SigninHandler(
         DataContext dataContext,
         IPasswordHasher passwordHasher,
         ILookupNormalizer lookupNormalizer,
@@ -22,7 +22,7 @@ public sealed class CreateUserHandler : ICommandHandler<CreateUserCommand, Unit>
         _securityStampProvider = securityStampProvider;
     }
     
-    public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(SigninCommand request, CancellationToken cancellationToken)
     {
         // Map validated properties
         var userToCreate = request.Adapt<User>();
