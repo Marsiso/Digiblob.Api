@@ -1,21 +1,36 @@
-using Digiblob.Api.Auth.Installers;
+using System.Net.Mime;
+using Digiblob.Api.Auth.Factories;
 using Digiblob.Api.Auth.Installers.Extensions;
 
-var builder = WebApplication.CreateSlimBuilder(args);
+Log.Logger = new SerilogLoggerFactory().CreateBootstrapLogger();
 
-builder.Logging.AddConsole();
-builder.Services.InstallServicesInAssembly(builder.Configuration, builder.Environment);
+try
+{
+    var builder = WebApplication.CreateSlimBuilder(args);
 
-var app = builder.Build();
+    builder.Host.UseSerilog();
+    builder.Services.InstallServicesInAssembly(builder.Configuration, builder.Environment);
 
-app.UseHttpLogging();
-var sampleTodos = TodoGenerator.GenerateTodos().ToArray();
+    var app = builder.Build();
 
-var api = app.MapGroup(ApiRoutes.Base);
-api.MapGet("/", () => sampleTodos);
-api.MapGet("/{id:int}", (int id) =>
-    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
-        ? Results.Ok(todo)
-        : Results.NotFound());
+    app.UseSerilogRequestLogging();
 
-app.Run();
+    var sampleTodos = TodoGenerator.GenerateTodos().ToArray();
+    
+    var api = app.MapGroup(ApiRoutes.Base);
+    api.MapGet("/", () => sampleTodos)
+        .Produces(StatusCodes.Status200OK,typeof(Todo[]), MediaTypeNames.Application.Json)
+        .ProducesProblem(StatusCodes.Status500InternalServerError, MediaTypeNames.Application.Json)
+        .AllowAnonymous();
+
+    Log.Information("Auth API is starting up");
+    app.Run();
+}
+catch (Exception exception)
+{
+    Log.Error(exception, "Auth API encountered errors. Application is shutting down");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
