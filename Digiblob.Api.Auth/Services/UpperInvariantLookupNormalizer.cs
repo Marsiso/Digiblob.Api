@@ -2,7 +2,7 @@
 
 namespace Digiblob.Api.Auth.Services;
 
-public sealed class UpperInvariantNormalizer : ILookupNormalizer
+public sealed class UpperInvariantLookupNormalizer : ILookupNormalizer
 {
     public string Normalize(string userName) => userName.Normalize().ToUpperInvariant();
 }
