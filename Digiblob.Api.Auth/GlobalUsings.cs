@@ -11,6 +11,7 @@ global using Digiblob.Api.Auth.Exceptions;
 global using Digiblob.Api.Auth.Factories;
 global using Digiblob.Api.Auth.Installers.Extensions;
 global using Digiblob.Api.Auth.Models.Post;
+global using Digiblob.Api.Auth.Queries;
 global using FluentValidation;
 global using Mapster;
 global using MediatR;

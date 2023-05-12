@@ -1,0 +1,22 @@
+### Hello sign-in result
+POST http://localhost:6000/api/v1/sign-in
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userName": "Marsiso",
+  "password": "Pass123$",
+  "email": "olsak.marek@putlook.cz",
+  "givenName": "Marek",
+  "familyName": "Olsak"
+}
+
+### Hello login result
+POST http://localhost:6000/api/v1/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userName": "Marsiso",
+  "password": "Pass123$"
+}

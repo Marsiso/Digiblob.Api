@@ -1,5 +1,4 @@
 ﻿using Digiblob.Api.Auth.Installers.Interfaces;
-using Digiblob.Api.Auth.Queries;
 using Digiblob.Api.Auth.Validators;
 
 namespace Digiblob.Api.Auth.Installers;

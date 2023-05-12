@@ -11,4 +11,9 @@ public static class ApiRoutes
         public const string Signin = Base + "/sign-in";
         public const string Login = Base + "/login";
     }
+    
+    public static class Gets
+    {
+        public const string Login = Posts.Login;
+    }
 }

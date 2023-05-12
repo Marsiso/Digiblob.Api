@@ -1,5 +1,4 @@
-﻿using Digiblob.Api.Auth.Queries;
-using Digiblob.Api.Auth.Services.Interfaces;
+﻿using Digiblob.Api.Auth.Services.Interfaces;
 
 namespace Digiblob.Api.Auth.Validators;
 
