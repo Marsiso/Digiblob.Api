@@ -1,7 +1,4 @@
-﻿using Digiblob.Api.Auth.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace Digiblob.Api.Auth.Data.Context;
+﻿namespace Digiblob.Api.Auth.Data.Context;
 
 public sealed class DataContext : DbContext
 {

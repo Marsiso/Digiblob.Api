@@ -17,7 +17,7 @@ namespace Digiblob.Api.Auth.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "8.0.0-preview.3.23174.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -43,14 +43,14 @@ namespace Digiblob.Api.Auth.Data.Migrations
                         .HasMaxLength(256)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(256)")
-                        .HasColumnName("name");
+                        .HasColumnName("role_name");
 
                     b.Property<string>("NormalizedName")
                         .IsRequired()
                         .HasMaxLength(256)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(256)")
-                        .HasColumnName("normalized_name");
+                        .HasColumnName("normalized_role_name");
 
                     b.HasKey("Id");
 
@@ -59,9 +59,7 @@ namespace Digiblob.Api.Auth.Data.Migrations
                     b.HasIndex("NormalizedName")
                         .IsUnique();
 
-                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("NormalizedName"));
-
-                    b.ToTable("roles", (string)null);
+                    b.ToTable("roles", "dbo");
                 });
 
             modelBuilder.Entity("Digiblob.Api.Auth.Data.Entities.User", b =>
@@ -75,7 +73,7 @@ namespace Digiblob.Api.Auth.Data.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int")
-                        .HasColumnName("access_failed_count");
+                        .HasColumnName("access_fail_count");
 
                     b.Property<byte[]>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -86,7 +84,7 @@ namespace Digiblob.Api.Auth.Data.Migrations
 
                     b.Property<DateTimeOffset?>("DateLockoutEnd")
                         .HasColumnType("datetimeoffset")
-                        .HasColumnName("date_lockout_end");
+                        .HasColumnName("date_locukout_end");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -94,6 +92,12 @@ namespace Digiblob.Api.Auth.Data.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(256)")
                         .HasColumnName("email");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("email_confirmed");
 
                     b.Property<string>("FamilyName")
                         .IsRequired()
@@ -118,9 +122,9 @@ namespace Digiblob.Api.Auth.Data.Migrations
 
                     b.Property<string>("NormalizedUserName")
                         .IsRequired()
-                        .HasMaxLength(256)
+                        .HasMaxLength(255)
                         .IsUnicode(true)
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("normalized_user_name");
 
                     b.Property<string>("PasswordHash")
@@ -129,15 +133,16 @@ namespace Digiblob.Api.Auth.Data.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .IsRequired()
+                        .HasMaxLength(450)
                         .IsUnicode(true)
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("security_stamp");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(256)
+                        .HasMaxLength(255)
                         .IsUnicode(true)
-                        .HasColumnType("nvarchar(256)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("user_name");
 
                     b.HasKey("Id");
@@ -147,18 +152,18 @@ namespace Digiblob.Api.Auth.Data.Migrations
                     b.HasIndex("NormalizedUserName", "NormalizedEmail")
                         .IsUnique();
 
-                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("NormalizedUserName", "NormalizedEmail"));
-
-                    b.ToTable("users", (string)null);
+                    b.ToTable("users", "dbo");
                 });
 
             modelBuilder.Entity("Digiblob.Api.Auth.Data.Entities.UserRole", b =>
                 {
                     b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
 
                     b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("role_id");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -166,7 +171,7 @@ namespace Digiblob.Api.Auth.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("user_roles", (string)null);
+                    b.ToTable("user_roles", "dbo");
                 });
 
             modelBuilder.Entity("Digiblob.Api.Auth.Data.Entities.UserRole", b =>

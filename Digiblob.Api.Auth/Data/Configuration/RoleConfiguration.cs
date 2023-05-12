@@ -1,6 +1,4 @@
-﻿using Digiblob.Api.Auth.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Digiblob.Api.Auth.Data.Configuration;
 
@@ -8,39 +6,38 @@ public sealed class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
     public void Configure(EntityTypeBuilder<Role> builder)
     {
-        builder.ToTable("roles");
+        builder.ToTable(Tables.Roles, DbDefaults.Schema);
 
         builder.HasKey(r => r.Id)
             .IsClustered();
 
         builder.HasIndex(r => r.NormalizedName)
-            .IsUnique()
-            .IsClustered();
+            .IsUnique();
 
         #region Properties
 
         builder.Property(r => r.Id)
             .IsRequired()
             .UseIdentityColumn()
-            .HasColumnName("id");
+            .HasColumnName(Columns.PrimaryKeyColumnName);
         
         builder.Property(u => u.Name)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("name")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.RoleNameColumnName)
+            .HasMaxLength(Constraints.MaximumRoleNameLength);
 
         builder.Property(u => u.NormalizedName)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("normalized_name")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.NormalizedRoleNameColumnName)
+            .HasMaxLength(Constraints.MaximumRoleNameLength);
 
         builder.Property(u => u.ConcurrencyStamp)
             .IsConcurrencyToken()
             .IsRowVersion()
             .IsRequired()
-            .HasColumnName("concurrency_stamp");
+            .HasColumnName(Columns.ConcurrencyStampColumnName);
 
         #endregion
 

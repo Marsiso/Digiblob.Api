@@ -1,6 +1,4 @@
-﻿using Digiblob.Api.Auth.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Digiblob.Api.Auth.Data.Configuration;
 
@@ -8,75 +6,80 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.ToTable("users");
+        builder.ToTable(Tables.Users, Schema);
         
         builder.HasKey(u => u.Id)
             .IsClustered();
 
         builder.HasIndex(u => new { u.NormalizedUserName, u.NormalizedEmail })
-            .IsUnique()
-            .IsClustered();
+            .IsUnique();
 
         #region Properties
 
         builder.Property(u => u.Id)
             .IsRequired()
             .UseIdentityColumn()
-            .HasColumnName("id");
+            .HasColumnName(Columns.PrimaryKeyColumnName);
 
         builder.Property(u => u.UserName)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("user_name")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.UserNameColumnName)
+            .HasMaxLength(Constraints.MaximumUserNameLength);
 
         builder.Property(u => u.NormalizedUserName)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("normalized_user_name")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.NormalizedUserNameColumnName)
+            .HasMaxLength(Constraints.MaximumUserNameLength);
 
         builder.Property(u => u.Email)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("email")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.EmailColumnName)
+            .HasMaxLength(Constraints.MaximumEmailLength);
 
         builder.Property(u => u.NormalizedEmail)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("normalized_email")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.NormalizedEmailColumnName)
+            .HasMaxLength(Constraints.MaximumEmailLength);
+
+        builder.Property(u => u.EmailConfirmed)
+            .IsRequired()
+            .HasDefaultValue(false)
+            .HasColumnName(Columns.EmailConfirmedColumnName);
 
         builder.Property(u => u.GivenName)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("given_name")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.GivenNameColumnName)
+            .HasMaxLength(Constraints.MaximumGivenNameLength);
 
         builder.Property(u => u.FamilyName)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("family_name")
-            .HasMaxLength(256);
+            .HasColumnName(Columns.FamilyNameColumnName)
+            .HasMaxLength(Constraints.MaximumFamilyNameLength);
 
         builder.Property(u => u.ConcurrencyStamp)
             .IsRequired()
             .IsConcurrencyToken()
             .IsRowVersion()
-            .HasColumnName("concurrency_stamp");
+            .HasColumnName(Columns.ConcurrencyStampColumnName);
 
         builder.Property(u => u.SecurityStamp)
             .IsRequired()
             .IsUnicode()
-            .HasColumnName("security_stamp");
+            .HasColumnName(Columns.SecurityStampColumnName)
+            .HasMaxLength(Constraints.SecurityStampLength);
 
         builder.Property(u => u.AccessFailedCount)
             .IsRequired()
-            .HasColumnName("access_failed_count");
+            .HasColumnName(Columns.AccessFailCountColumnName);
 
         builder.Property(u => u.DateLockoutEnd)
-            .HasColumnName("date_lockout_end");
+            .HasColumnName(Columns.DateLockoutEndColumnName);
 
         #endregion
 

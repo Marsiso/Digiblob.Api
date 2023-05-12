@@ -8,6 +8,7 @@ public sealed class User : Entity
     public string NormalizedUserName { get; set; } = default!;
     public string Email { get; set; } = default!;
     public string NormalizedEmail { get; set; } = default!;
+    public bool EmailConfirmed { get; set; }
     public string PasswordHash { get; set; } = default!;
     public byte[] ConcurrencyStamp { get; set; } = default!;
     public string SecurityStamp { get; set; } = default!;
