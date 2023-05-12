@@ -1,4 +1,6 @@
-﻿namespace Digiblob.Api.Auth.Installers;
+﻿using Digiblob.Api.Auth.Installers.Interfaces;
+
+namespace Digiblob.Api.Auth.Installers.Extensions;
 
 public static class InstallerExtensions
 {

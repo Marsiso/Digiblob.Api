@@ -1,4 +1,5 @@
 using Digiblob.Api.Auth.Installers;
+using Digiblob.Api.Auth.Installers.Extensions;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 

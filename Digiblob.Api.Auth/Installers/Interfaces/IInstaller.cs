@@ -1,4 +1,4 @@
-﻿namespace Digiblob.Api.Auth.Installers;
+﻿namespace Digiblob.Api.Auth.Installers.Interfaces;
 
 public interface IInstaller
 {
