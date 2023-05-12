@@ -9,7 +9,7 @@ public sealed class SecurityInstaller : IInstaller
     public void InstallServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddScoped<IPasswordHasher, PasswordHasher>();
-        services.AddScoped<ILookupNormalizer, UpperInvariantLookupNormalizer>();
-        services.AddScoped<ISecurityStampProvider, SecurityStampProvider>();
+        services.AddSingleton<ILookupNormalizer, UpperInvariantLookupNormalizer>();
+        services.AddSingleton<ISecurityStampProvider, SecurityStampProvider>();
     }
 }
