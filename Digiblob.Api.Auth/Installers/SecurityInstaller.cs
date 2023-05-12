@@ -11,5 +11,6 @@ public sealed class SecurityInstaller : IInstaller
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<ILookupNormalizer, UpperInvariantLookupNormalizer>();
         services.AddSingleton<ISecurityStampProvider, SecurityStampProvider>();
+        services.AddScoped<ITokenProvider, TokenProvider>();
     }
 }

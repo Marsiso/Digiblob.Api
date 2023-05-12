@@ -66,12 +66,12 @@ public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCom
     
     private static bool UserNameContainsValidCharacters(string userName)
     {
-        return userName == null || userName.All(c => Constraints.AllowedUserNameCharacters.IndexOf(c, StringComparison.Ordinal) != -1);
+        return userName.All(c => Constraints.AllowedUserNameCharacters.IndexOf(c, StringComparison.Ordinal) != -1);
     }
     
     private static bool PasswordContainsValidCharacters(string password)
     {
-        return password == null || password.All(c => Constraints.AllowedPasswordCharacters.IndexOf(c, StringComparison.Ordinal) != -1);
+        return password.All(c => Constraints.AllowedPasswordCharacters.IndexOf(c, StringComparison.Ordinal) != -1);
     }
     
     private bool EmailNotTaken(string email)

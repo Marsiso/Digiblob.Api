@@ -11,6 +11,7 @@ public sealed class MediatRInstaller : IInstaller
         {
             mediatRServiceConfiguration.RegisterServicesFromAssembly(typeof(Program).Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryValidationBehaviour<,>));
         });
     }
 }
