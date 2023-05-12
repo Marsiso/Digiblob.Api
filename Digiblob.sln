@@ -1,8 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{D5929C73-4575-42A5-A2C0-A9982777E039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digiblob.Api.Auth", "Digiblob.Api.Auth\Digiblob.Api.Auth.csproj", "{C2FFF65D-9E35-4B12-906E-CE4859E15E00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2FFF65D-9E35-4B12-906E-CE4859E15E00} = {D5929C73-4575-42A5-A2C0-A9982777E039}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2FFF65D-9E35-4B12-906E-CE4859E15E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2FFF65D-9E35-4B12-906E-CE4859E15E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2FFF65D-9E35-4B12-906E-CE4859E15E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2FFF65D-9E35-4B12-906E-CE4859E15E00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
