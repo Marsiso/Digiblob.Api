@@ -1,5 +1,4 @@
-﻿using Digiblob.Api.Auth.Models.Get;
-using Digiblob.Api.Auth.Queries.Interfaces;
+﻿using Digiblob.Api.Auth.Queries.Interfaces;
 
 namespace Digiblob.Api.Auth.Queries;
 

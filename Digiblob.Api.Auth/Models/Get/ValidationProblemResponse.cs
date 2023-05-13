@@ -16,21 +16,17 @@ public sealed class ValidationProblemResponse
     public int StatusCode { get; set; }
 
     [DataMember]
-    public string Type { get; set; } = default!;
-
-    [DataMember]
     public IDictionary<string, string[]> ValidationFailures { get; set; } = default!;
 
     public ValidationProblemResponse()
     {
     }
 
-    public ValidationProblemResponse(string title, string detail, int statusCode, string type, IDictionary<string, string[]> validationFailures)
+    public ValidationProblemResponse(string title, string detail, int statusCode, IDictionary<string, string[]> validationFailures)
     {
         Title = title;
         Detail = detail;
         StatusCode = statusCode;
-        Type = type;
         ValidationFailures = validationFailures;
     }
 

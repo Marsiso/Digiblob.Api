@@ -1,11 +1,10 @@
 ﻿using System.Security.Authentication;
-using Digiblob.Api.Auth.Models.Get;
 
-namespace Digiblob.Api.Auth.Extensions;
+namespace Digiblob.Api.Auth.Exceptions.Extensions;
 
 public static class ExceptionExtensions
 {
-    public static object ExceptionDescriptor(this Exception exception, in string locationUri, out int statusCode)
+    public static object GetExceptionDescription(this Exception exception, in string locationUri, out int statusCode)
     {
         switch (exception)
         {
@@ -16,17 +15,14 @@ public static class ExceptionExtensions
                     statusCode);
             case AuthenticationException:
                 statusCode = StatusCodes.Status401Unauthorized;
-                return new ExceptionResponse(
-                    $"Unauthorized exception caught by the exception handler. Endpoint: {locationUri}",
+                return new ExceptionResponse($"Credentials sent from the client are invalid. Endpoint: {locationUri}",
                     exception.Message,
                     statusCode);
             case UnprocessableEntityException unprocessableEntity:
                 statusCode = StatusCodes.Status422UnprocessableEntity;
-                return new ValidationProblemResponse(
-                    $"Unprocessable entity sent from the client. Endpoint: {locationUri}",
+                return new ValidationProblemResponse($"Object sent from the client is invalid. Endpoint: {locationUri}",
                     exception.Message,
                     statusCode,
-                    nameof(UnprocessableEntityException),
                     unprocessableEntity.ValidationFailures);
             case OperationCanceledException:
                 statusCode = 499;
@@ -35,8 +31,7 @@ public static class ExceptionExtensions
                     statusCode);
             default:
                 statusCode = StatusCodes.Status500InternalServerError;
-                return new ExceptionResponse(
-                    $"Global exception caught by the exception handler. Endpoint: {locationUri}",
+                return new ExceptionResponse($"Global exception caught by the exception handler. Endpoint: {locationUri}",
                     exception.Message,
                     statusCode);
         }

@@ -1,6 +1,5 @@
 ﻿using System.Security.Authentication;
 using Digiblob.Api.Auth.Handlers.Queries.Interfaces;
-using Digiblob.Api.Auth.Models.Get;
 using Digiblob.Api.Auth.Services.Interfaces;
 
 namespace Digiblob.Api.Auth.Handlers.Queries;
