@@ -5,7 +5,8 @@ namespace Digiblob.Api.Auth.Installers;
 
 public sealed class EndpointInstaller : IInstaller
 {
-    public void InstallServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public void InstallServices(IServiceCollection services, IConfiguration configuration,
+        IWebHostEnvironment environment)
     {
         services.AddEndpointDefinitions(typeof(Program));
     }

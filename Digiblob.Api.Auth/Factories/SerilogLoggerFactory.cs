@@ -21,11 +21,13 @@ public sealed class SerilogLoggerFactory : ISerilogLoggerFactory
     ///     or environment type.
     /// </summary>
     /// <returns>Returns the configured logger instance.</returns>
-    public ILogger CreateBootstrapLogger() =>
-        new LoggerConfiguration()
+    public ILogger CreateBootstrapLogger()
+    {
+        return new LoggerConfiguration()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
             .MinimumLevel.Override("System", LogEventLevel.Warning)
             .SetSinks()
             .SetEnrichers()
             .CreateLogger();
+    }
 }

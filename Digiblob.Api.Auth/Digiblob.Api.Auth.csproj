@@ -8,33 +8,32 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-      <PackageReference Include="IdentityModel" Version="6.1.0" />
-      <PackageReference Include="Mapster" Version="7.4.0-pre06" />
-      <PackageReference Include="MediatR" Version="12.0.1" />
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-preview.3.23177.8" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-preview.3.23174.2" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0-preview.3.23174.2">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.3.23174.2" />
-      <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-preview.3.23174.8" />
-      <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
-      <PackageReference Include="Serilog.Enrichers.Environment" Version="2.3.0-dev-00792" />
-      <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />
-      <PackageReference Include="Serilog.Enrichers.Thread" Version="3.2.0-dev-00752" />
-      <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0"/>
+        <PackageReference Include="IdentityModel" Version="6.1.0"/>
+        <PackageReference Include="Mapster" Version="7.4.0-pre06"/>
+        <PackageReference Include="MediatR" Version="12.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-preview.3.23177.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-preview.3.23174.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0-preview.3.23174.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.3.23174.2"/>
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-preview.3.23174.8"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="7.0.0"/>
+        <PackageReference Include="Serilog.Enrichers.Environment" Version="2.3.0-dev-00792"/>
+        <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2"/>
+        <PackageReference Include="Serilog.Enrichers.Thread" Version="3.2.0-dev-00752"/>
+        <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Data\Migrations\" />
-      <Folder Include="Data\Services\" />
-      <Folder Include="Enums\" />
-      <Folder Include="Extensions\" />
-      <Folder Include="Filters\" />
-      <Folder Include="Configuration\" />
+        <Folder Include="Data\Migrations\"/>
+        <Folder Include="Enums\"/>
+        <Folder Include="Extensions\"/>
+        <Folder Include="Filters\"/>
+        <Folder Include="Configuration\"/>
     </ItemGroup>
 
 </Project>

@@ -13,9 +13,9 @@ public sealed class TokenProvider : ITokenProvider
         var secretKey = new SymmetricSecurityKey("1376c460-6fc0-41d0-b249-a3db7824ad1c"u8.ToArray());
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
         var tokenOptions = new JwtSecurityToken(
-            issuer: "http://localhost:6000",
-            audience: "http://localhost:6000",
-            claims: new List<Claim>
+            "https://localhost:6001",
+            "https://localhost:6001",
+            new List<Claim>
             {
                 new(JwtClaimTypes.Subject, user.Id.ToString()),
                 new(JwtClaimTypes.Email, user.Email),
@@ -25,7 +25,7 @@ public sealed class TokenProvider : ITokenProvider
             expires: DateTime.Now.AddMinutes(15),
             signingCredentials: signinCredentials
         );
-        
+
         return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
     }
 }

@@ -5,7 +5,8 @@ namespace Digiblob.Api.Auth.Installers;
 
 public sealed class ValidatorInstaller : IInstaller
 {
-    public void InstallServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public void InstallServices(IServiceCollection services, IConfiguration configuration,
+        IWebHostEnvironment environment)
     {
         services.AddScoped<IValidator<SigninCommand>, SigninCommandValidator>();
         services.AddScoped<IValidator<LoginQuery>, LoginQueryValidator>();

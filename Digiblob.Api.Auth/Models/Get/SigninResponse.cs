@@ -6,21 +6,19 @@ namespace Digiblob.Api.Auth.Models.Get;
 [DataContract]
 public sealed class SigninResponse
 {
-    [DataMember]
-    public int StatusCode { get; set; }
-
-    [DataMember]
-    public string LocationUri { get; set; } = default!;
-
     public SigninResponse()
     {
     }
 
     public SigninResponse(int statusCode, string locationUri)
     {
-        StatusCode = statusCode;
-        LocationUri = locationUri;
+        this.StatusCode = statusCode;
+        this.LocationUri = locationUri;
     }
+
+    [DataMember] public int StatusCode { get; set; }
+
+    [DataMember] public string LocationUri { get; set; } = default!;
 
     public override string ToString()
     {

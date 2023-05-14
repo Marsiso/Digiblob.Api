@@ -70,17 +70,17 @@ public static class DbDefaults
     public static class Constraints
     {
         #region User
-        
+
         public const string AllowedUserNameCharacters =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!#$%^&*-_=+`|<>[]{}():?/\\";
-    
+
         public const string AllowedPasswordCharacters =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+()[]{}:.<>\\/?|";
-        
+
         public const int MinimumPasswordLength = 7;
-        
+
         public const int MaximumPasswordLength = 100;
-        
+
         public const int MinimumUserNameLength = 2;
 
         public const int MaximumUserNameLength = 255;
@@ -92,15 +92,15 @@ public static class DbDefaults
         public const int MinimumFamilyNameLength = 2;
 
         public const int MaximumFamilyNameLength = 256;
-        
+
         public const int MaximumEmailLength = 256;
-        
+
         public const int SecurityStampLength = 450;
 
         #endregion
-        
+
         #region Role
-        
+
         public const string AllowedRoleNameCharacters =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

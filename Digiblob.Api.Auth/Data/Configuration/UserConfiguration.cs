@@ -7,7 +7,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable(Tables.Users, Schema);
-        
+
         builder.HasKey(u => u.Id)
             .IsClustered();
 
@@ -90,7 +90,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
             .HasForeignKey(ur => ur.UserId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         #endregion
     }
 }

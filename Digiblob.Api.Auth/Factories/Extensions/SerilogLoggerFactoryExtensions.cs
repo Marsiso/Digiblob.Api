@@ -12,8 +12,9 @@ public static class SerilogLoggerFactoryExtensions
     /// </summary>
     /// <param name="configuration">Logging service configuration.</param>
     /// <returns>Logging service configuration.</returns>
-    public static LoggerConfiguration SetEnrichers(this LoggerConfiguration configuration) => 
-        configuration.Enrich.WithEnvironmentName()
+    public static LoggerConfiguration SetEnrichers(this LoggerConfiguration configuration)
+    {
+        return configuration.Enrich.WithEnvironmentName()
             .Enrich.WithEnvironmentUserName()
             .Enrich.WithMachineName()
             .Enrich.WithThreadId()
@@ -21,18 +22,21 @@ public static class SerilogLoggerFactoryExtensions
             .Enrich.WithProcessId()
             .Enrich.WithProcessName()
             .Enrich.FromLogContext();
+    }
 
     /// <summary>
     ///     Adds default sinks to the logging service configuration.
     /// </summary>
     /// <param name="configuration">Logging service configuration.</param>
     /// <returns>Logging service configuration.</returns>
-    public static LoggerConfiguration SetSinks(this LoggerConfiguration configuration) =>
-        configuration
+    public static LoggerConfiguration SetSinks(this LoggerConfiguration configuration)
+    {
+        return configuration
             .WriteTo.Console(
-                restrictedToMinimumLevel: LogEventLevel.Debug,
-                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
+                LogEventLevel.Debug,
+                "{Timestamp:yyyy-MM-dd HH:mm:ss zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
             .WriteTo.Seq(
-                serverUrl: "http://localhost:8001",
-                restrictedToMinimumLevel: LogEventLevel.Debug);
+                "http://localhost:8001",
+                LogEventLevel.Debug);
+    }
 }

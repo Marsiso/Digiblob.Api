@@ -4,5 +4,10 @@ namespace Digiblob.Api.Auth.Services;
 
 public sealed class SecurityStampProvider : ISecurityStampProvider
 {
-    public string GetStamp() => Guid.NewGuid().ToString("D");
+    private const string Format = "D";
+
+    public string GetStamp()
+    {
+        return Guid.NewGuid().ToString(Format);
+    }
 }

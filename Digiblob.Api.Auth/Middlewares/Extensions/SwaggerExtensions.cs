@@ -7,14 +7,8 @@ public static class SwaggerExtensions
     {
         if (env.IsDevelopment())
         {
-            applicationBuilder.UseSwagger(option =>
-            {
-                option.RouteTemplate = "swagger/{documentName}/swagger.json";
-            });
-            applicationBuilder.UseSwaggerUI(option =>
-            {
-                option.SwaggerEndpoint("v1/swagger.json", "v1");
-            });
+            applicationBuilder.UseSwagger(option => { option.RouteTemplate = "swagger/{documentName}/swagger.json"; });
+            applicationBuilder.UseSwaggerUI(option => { option.SwaggerEndpoint("v1/swagger.json", "v1"); });
         }
     }
 }

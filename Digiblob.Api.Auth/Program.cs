@@ -15,7 +15,7 @@ try
     app.ConfigureSwagger(app.Configuration, app.Environment);
     app.UseHttpsRedirection();
     app.UseEndpointDefinitions();
-    
+
     Log.Information("Auth API is starting up");
     app.Run();
 }

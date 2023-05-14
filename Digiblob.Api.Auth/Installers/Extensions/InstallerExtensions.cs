@@ -14,7 +14,7 @@ public static class InstallerExtensions
             .Select(Activator.CreateInstance)
             .Cast<IInstaller>()
             .ToList();
-        
+
         installers.ForEach(installer => installer.InstallServices(services, configuration, environment));
     }
 }

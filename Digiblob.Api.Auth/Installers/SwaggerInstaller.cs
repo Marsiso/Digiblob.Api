@@ -5,7 +5,8 @@ namespace Digiblob.Api.Auth.Installers;
 
 public sealed class SwaggerInstaller : IInstaller
 {
-    public void InstallServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public void InstallServices(IServiceCollection services, IConfiguration configuration,
+        IWebHostEnvironment environment)
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(option =>

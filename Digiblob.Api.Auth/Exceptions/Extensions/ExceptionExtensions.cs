@@ -31,7 +31,8 @@ public static class ExceptionExtensions
                     statusCode);
             default:
                 statusCode = StatusCodes.Status500InternalServerError;
-                return new ExceptionResponse($"Global exception caught by the exception handler. Endpoint: {locationUri}",
+                return new ExceptionResponse(
+                    $"Global exception caught by the exception handler. Endpoint: {locationUri}",
                     exception.Message,
                     statusCode);
         }

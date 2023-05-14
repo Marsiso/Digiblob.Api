@@ -16,7 +16,7 @@ public sealed class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
         builder.Property(ur => ur.UserId)
             .IsRequired()
             .HasColumnName(Columns.UserForeignKeyColumnName);
-        
+
         builder.Property(ur => ur.RoleId)
             .IsRequired()
             .HasColumnName(Columns.RoleForeignKeyColumnName);

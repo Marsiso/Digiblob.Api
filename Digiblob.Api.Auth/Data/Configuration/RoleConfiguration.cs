@@ -6,7 +6,7 @@ public sealed class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
     public void Configure(EntityTypeBuilder<Role> builder)
     {
-        builder.ToTable(Tables.Roles, DbDefaults.Schema);
+        builder.ToTable(Tables.Roles, Schema);
 
         builder.HasKey(r => r.Id)
             .IsClustered();
@@ -20,7 +20,7 @@ public sealed class RoleConfiguration : IEntityTypeConfiguration<Role>
             .IsRequired()
             .UseIdentityColumn()
             .HasColumnName(Columns.PrimaryKeyColumnName);
-        
+
         builder.Property(u => u.Name)
             .IsRequired()
             .IsUnicode()

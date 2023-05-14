@@ -6,8 +6,8 @@ namespace Digiblob.Api.Auth.Handlers.Commands;
 public sealed class SigninHandler : ICommandHandler<SigninCommand, Unit>
 {
     private readonly DataContext _dataContext;
-    private readonly IPasswordHasher _passwordHasher;
     private readonly ILookupNormalizer _lookupNormalizer;
+    private readonly IPasswordHasher _passwordHasher;
     private readonly ISecurityStampProvider _securityStampProvider;
 
     public SigninHandler(
@@ -16,29 +16,29 @@ public sealed class SigninHandler : ICommandHandler<SigninCommand, Unit>
         ILookupNormalizer lookupNormalizer,
         ISecurityStampProvider securityStampProvider)
     {
-        _dataContext = dataContext;
-        _passwordHasher = passwordHasher;
-        _lookupNormalizer = lookupNormalizer;
-        _securityStampProvider = securityStampProvider;
+        this._dataContext = dataContext;
+        this._passwordHasher = passwordHasher;
+        this._lookupNormalizer = lookupNormalizer;
+        this._securityStampProvider = securityStampProvider;
     }
-    
+
     public async Task<Unit> Handle(SigninCommand request, CancellationToken cancellationToken)
     {
         // Map validated properties
         var userToCreate = request.Adapt<User>();
-        
-        // Set normalized email and user name
-        userToCreate.NormalizedEmail = _lookupNormalizer.Normalize(request.Email);
-        userToCreate.NormalizedUserName = _lookupNormalizer.Normalize(request.UserName);
 
-        // Set required properties
-        userToCreate.SecurityStamp = _securityStampProvider.GetStamp();
-        userToCreate.PasswordHash = _passwordHasher.HashPassword(request.Password);
-        
-        // Create a user in the persistence store
-        await _dataContext.Users.AddAsync(userToCreate, cancellationToken);
-        await _dataContext.SaveChangesAsync(cancellationToken);
-        
+        // Normalized email and user name
+        userToCreate.NormalizedEmail = this._lookupNormalizer.Normalize(request.Email);
+        userToCreate.NormalizedUserName = this._lookupNormalizer.Normalize(request.UserName);
+
+        // Security features
+        userToCreate.SecurityStamp = this._securityStampProvider.GetStamp();
+        userToCreate.PasswordHash = this._passwordHasher.HashPassword(request.Password);
+
+        // Persistence store
+        await this._dataContext.Users.AddAsync(userToCreate, cancellationToken);
+        await this._dataContext.SaveChangesAsync(cancellationToken);
+
         // Return
         return new Unit();
     }

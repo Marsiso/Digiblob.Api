@@ -6,7 +6,8 @@ namespace Digiblob.Api.Auth.Installers;
 
 public sealed class SecurityInstaller : IInstaller
 {
-    public void InstallServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public void InstallServices(IServiceCollection services, IConfiguration configuration,
+        IWebHostEnvironment environment)
     {
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<ILookupNormalizer, UpperInvariantLookupNormalizer>();

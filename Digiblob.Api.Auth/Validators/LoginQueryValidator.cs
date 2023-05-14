@@ -4,28 +4,29 @@ namespace Digiblob.Api.Auth.Validators;
 
 public sealed class LoginQueryValidator : AbstractValidator<LoginQuery>
 {
-    private readonly ILookupNormalizer _lookupNormalizer;
     private readonly DataContext _dataContext;
-    
+    private readonly ILookupNormalizer _lookupNormalizer;
+
     public LoginQueryValidator(ILookupNormalizer lookupNormalizer, DataContext dataContext)
     {
-        _lookupNormalizer = lookupNormalizer;
-        _dataContext = dataContext;
-        
-        RuleLevelCascadeMode = CascadeMode.Stop;
+        this._lookupNormalizer = lookupNormalizer;
+        this._dataContext = dataContext;
 
-        RuleFor(user => user.UserName).NotEmpty()
+        this.RuleLevelCascadeMode = CascadeMode.Stop;
+
+        this.RuleFor(user => user.UserName).NotEmpty()
             .WithMessage("User name is required")
-            .Must(UserExists)
+            .Must(this.UserExists)
             .WithMessage("Invalid user name or password");
 
-        RuleFor(user => user.Password).NotEmpty()
+        this.RuleFor(user => user.Password).NotEmpty()
             .WithMessage("Password is required");
     }
-    
+
     private bool UserExists(string userName)
     {
-        var normalizedUserName = _lookupNormalizer.Normalize(userName);
-        return _dataContext.Set<User>().Any(u => u.NormalizedEmail == normalizedUserName || u.NormalizedUserName == normalizedUserName);
+        var normalizedUserName = this._lookupNormalizer.Normalize(userName);
+        return this._dataContext.Set<User>().Any(u =>
+            u.NormalizedEmail == normalizedUserName || u.NormalizedUserName == normalizedUserName);
     }
 }
